@@ -1,0 +1,66 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: java-spring-boot-template
+  title: Java Spring Boot Service
+  description: Scaffolds a Spring Boot project with Java 17, JPA, Lombok, Web, and Actuator
+  tags:
+    - java
+    - springboot
+    - backend
+spec:
+  owner: platform-team
+  type: service
+
+  parameters:
+    - title: Provide basic information
+      required:
+        - component_id
+        - owner
+      properties:
+        component_id:
+          title: Component ID
+          type: string
+          description: Unique identifier for the service
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the service
+
+  steps:
+    - id: fetch-base
+      name: Fetch and configure base template
+      action: fetch:template
+      input:
+        url: ./templates/java-springboot
+        values:
+          component_id: ${component_id}
+          owner: ${owner}
+
+    - id: publish
+      name: Publish to GitHub
+      action: publish:github
+      input:
+        allowedHosts: [github.com]
+        description: "Repository for {component_id}"
+        repoUrl: github.com/jeet041/${component_id}
+        defaultBranch: main
+        repoVisibility: public
+
+    - id: register
+      name: Register in Backstage catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: "https://github.com/jeet041/${component_id}/blob/main/catalog-info.yaml"
+        catalogInfoPath: "/catalog-info.yaml"
+
+  output:
+    links:
+      - title: Repository
+        url: "https://github.com/jeet041/${component_id}"
+      # - title: Backstage Catalog Entry
+      #   url: "https://backstage.jeet041.com/catalog/platform/component/${component_id}"
+
+  templates:
+    - id: java-springboot
+      path: ./templates/java-springboot
