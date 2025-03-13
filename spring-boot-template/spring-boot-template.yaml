@@ -43,7 +43,7 @@ spec:
       input:
         allowedHosts: [github.com]
         description: "Repository for {component_id}"
-        repoUrl: https://github.com/jeet041/${{parameters.component_id}}
+        repoUrl: github.com/jeet041/${{parameters.component_id}}
         defaultBranch: main
         repoVisibility: public
 
