@@ -34,8 +34,8 @@ spec:
       input:
         url: https://github.com/jeet041/JPA-Tutorial.git
         values:
-          component_id: ${component_id}
-          owner: ${owner}
+          component_id: ${{parameters.component_id}}
+          owner: ${{parameters.owner}}
 
     - id: publish
       name: Publish to GitHub
@@ -43,7 +43,7 @@ spec:
       input:
         allowedHosts: [github.com]
         description: "Repository for {component_id}"
-        repoUrl: https://github.com/jeet041/${component_id}
+        repoUrl: https://github.com/jeet041/${{parameters.component_id}}
         defaultBranch: main
         repoVisibility: public
 
@@ -51,15 +51,15 @@ spec:
       name: Register in Backstage catalog
       action: catalog:register
       input:
-        repoContentsUrl: "https://github.com/jeet041/${component_id}/blob/main/catalog-info.yaml"
+        repoContentsUrl: "https://github.com/jeet041/${{parameters.component_id}}/blob/main/catalog-info.yaml"
         catalogInfoPath: "/catalog-info.yaml"
 
   output:
     links:
       - title: Repository
-        url: "https://github.com/jeet041/${component_id}"
+        url: "https://github.com/jeet041/${{parameters.component_id}}"
       # - title: Backstage Catalog Entry
-      #   url: "https://backstage.jeet041.com/catalog/platform/component/${component_id}"
+      #   url: "https://backstage.jeet041.com/catalog/platform/component/${{parameters.component_id}}"
 
   templates:
     - id: java-springboot
