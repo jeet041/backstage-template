@@ -32,7 +32,7 @@ spec:
       name: Fetch and configure base template
       action: fetch:template
       input:
-        url: ./templates/java-springboot
+        url: https://github.com/jeet041/JPA-Tutorial.git
         values:
           component_id: ${component_id}
           owner: ${owner}
