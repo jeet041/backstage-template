@@ -45,7 +45,7 @@ spec:
         description: "Repository for {component_id}"
         repoUrl: github.com?owner=jeet041&repo=${{parameters.component_id}}
         defaultBranch: main
-        repoVisibility: public
+        # repoVisibility: public
 
     - id: register
       name: Register in Backstage catalog
