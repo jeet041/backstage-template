@@ -51,15 +51,16 @@ spec:
       name: Register in Backstage catalog
       action: catalog:register
       input:
-        repoContentsUrl: ${{steps.publish.output.repoContentsUrl}}
+        repoContentsUrl: ${{steps['publish'].output.repoContentsUrl}}
         catalogInfoPath: "/catalog-info.yaml"
 
   output:
     links:
       - title: Repository
-        url: "https://github.com/jeet041/${{parameters.component_id}}"
-      # - title: Backstage Catalog Entry
-      #   url: "https://backstage.jeet041.com/catalog/platform/component/${{parameters.component_id}}"
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
 
   # templates:
   #   - id: java-springboot
