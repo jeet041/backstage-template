@@ -51,7 +51,7 @@ spec:
       name: Register in Backstage catalog
       action: catalog:register
       input:
-        repoContentsUrl: "https://github.com/jeet041/${{parameters.component_id}}/blob/main/catalog-info.yaml"
+        repoContentsUrl: ${{steps.publish.output.repoContentsUrl}}
         catalogInfoPath: "/catalog-info.yaml"
 
   output:
@@ -61,6 +61,6 @@ spec:
       # - title: Backstage Catalog Entry
       #   url: "https://backstage.jeet041.com/catalog/platform/component/${{parameters.component_id}}"
 
-  templates:
-    - id: java-springboot
-      path: ./templates/java-springboot
+  # templates:
+  #   - id: java-springboot
+  #     path: ./templates/java-springboot
