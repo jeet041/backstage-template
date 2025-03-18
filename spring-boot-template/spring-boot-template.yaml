@@ -42,7 +42,7 @@ spec:
       action: fetch:template
       input:
         url: https://github.com/jeet041/backstage-template/tree/main/spring-boot-template/catalog-info.yaml
-        targetPath: .
+        targetPath: https://github.com/jeet041/JPA-Tutorial
         values:
           component_id: ${{ parameters.component_id }}
           owner: ${{ parameters.owner }}      
