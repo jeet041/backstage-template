@@ -41,8 +41,8 @@ spec:
       name: Fetch catalog-info.yaml template
       action: fetch:template
       input:
-        url: ./catalog-info
-        targetPath: .
+        url: https://github.com/jeet041/backstage-template/tree/main/spring-boot-template/catalog-info.yaml
+        targetPath: https://github.com/jeet041/JPA-Tutorial//blob/master/catalog-info.yaml
         values:
           component_id: ${{ parameters.component_id }}
           owner: ${{ parameters.owner }}      
