@@ -35,17 +35,7 @@ spec:
         url: https://github.com/jeet041/JPA-Tutorial.git
         values:
           component_id: ${{parameters.component_id}}
-          owner: ${{parameters.owner}}
-          
-    - id: fetch-catalog-info
-      name: Fetch catalog-info.yaml template
-      action: fetch:template
-      input:
-        url: https://github.com/jeet041/backstage-template/tree/main/spring-boot-template/catalog-info.yaml
-        targetPath: https://github.com/jeet041/${{parameters.component_id}}
-        values:
-          component_id: ${{ parameters.component_id }}
-          owner: ${{ parameters.owner }}      
+          owner: ${{parameters.owner}}  
 
     - id: publish
       name: Publish to GitHub
@@ -55,7 +45,17 @@ spec:
         description: "Repository for {component_id}"
         repoUrl: github.com?owner=jeet041&repo=${{parameters.component_id}}
         defaultBranch: main
-        # repoVisibility: public
+        repoVisibility: public
+        
+    - id: fetch-catalog-info
+      name: Fetch catalog-info.yaml template
+      action: fetch:template
+      input:
+        url: https://github.com/jeet041/backstage-template/tree/main/spring-boot-template/catalog-info.yaml
+        targetPath: https://github.com/jeet041/${{parameters.component_id}}
+        values:
+          component_id: ${{ parameters.component_id }}
+          owner: ${{ parameters.owner }}    
 
     - id: register
       name: Register in Backstage catalog
