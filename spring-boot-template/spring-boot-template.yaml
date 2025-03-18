@@ -36,6 +36,25 @@ spec:
         values:
           component_id: ${{parameters.component_id}}
           owner: ${{parameters.owner}}
+          
+    - id: create-catalog-info
+      name: Generate catalog-info.yaml
+      action: fs:write
+      input:
+        path: ./catalog-info.yaml
+        content: |
+          apiVersion: backstage.io/v1alpha1
+          kind: Component
+          metadata:
+            name: ${{ parameters.component_id }}
+            description: Automatically generated Backstage catalog entry
+            annotations:
+              github.com/project-slug: jeet041/${{ parameters.component_id }}
+          spec:
+            type: service
+            lifecycle: production
+            owner: ${{ parameters.owner }}
+      
 
     - id: publish
       name: Publish to GitHub
